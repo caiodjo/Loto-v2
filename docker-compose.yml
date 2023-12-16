@@ -1,0 +1,11 @@
+version: "3.8"
+services:
+  backend:
+    container_name: loto_servidor
+    build: 
+      context: ./back-end-loto-app
+    ports:
+      - ${PORT_BACK}:${PORT_BACK}
+    volumes:
+      - ./back-end-loto-app:/usr/src/app
+    env_file: ./back-end-loto-app/.env
