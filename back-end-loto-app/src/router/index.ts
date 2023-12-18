@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import v1Router from './v1Router';
+import planilhaRouter from '../resources/planilha/planilha.router';
 
 const router = Router();
 
-router.use('/v1', v1Router);
+router.use('/upload', planilhaRouter);
 
 export default router;
