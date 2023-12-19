@@ -40,7 +40,12 @@ export class Cartela {
         return cartelasFiltradas;
     }
 
+    /*
+        @params: qtdPares -> quantidade de numeros pares desejadas para montar a cartela.
+        @return: allPossibilities -> concatenação de listas de numeros pares com lista de impares.
+    */
     static createEvenOddCombinations(qtdPares: 6 | 7 | 8): number[][] {
+        //Estrutura com listas de combinações possíveis com a quantidade passada por parametro
         const evenComb: Combination<number> = new Combination(this.padroes.pares, qtdPares);
         const qtdImpares: number = 15 - qtdPares;
         const oddComb: Combination<number> = new Combination(this.padroes.impares, qtdImpares);
@@ -53,6 +58,12 @@ export class Cartela {
         return allPossibilities;
     }
 
+    /*
+        @params:
+        arr1, arr2 -> lista de arrays a ser concatenadas
+        qtdPares -> informacao necessaria para filtrar primos e fibonaccis necessarios. 
+        return: allPossibilities -> concatenação de listas de numeros pares com lista de impares.
+    */
     static concatenarPossibilidades(arr1: number[][], arr2: number[][], qtdPares: 6 | 7 | 8): number[][] {
         const result = [];
         for (let i = 0; i < arr1.length; i++) {

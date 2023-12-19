@@ -1,8 +1,9 @@
 import { Router } from "express";
-import buildCombinations from "./cartela.controller";
+import cartelaController from "./cartela.controller";
 
 const router = Router();
 
-router.post("/", buildCombinations);
+router.post("/start", cartelaController.startCombinations);
+router.post("/", cartelaController.buildCombinations);
 
 export default router;
