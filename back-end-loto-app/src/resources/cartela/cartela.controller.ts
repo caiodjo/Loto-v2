@@ -1,4 +1,4 @@
-import { Request, Response} from "express";
+import { Request, Response } from "express";
 import * as fs from "fs";
 import xlsx from "node-xlsx";
 import { Cartela } from "../../utils/Cartela";
@@ -36,16 +36,19 @@ function filter(req: Request, res: Response) {
 }
 
 function exportXlsx(req: Request, res: Response) {
-  const {games}:{games: number[][]} = req.body;
-  if (games.length > 500) return res.status(460).json("Erro:Não é possível gerar uma planilha com mais de 500 entradas")
+  const { games }: { games: number[][] } = req.body;
+  if (games.length > 500)
+    return res
+      .status(460)
+      .json("Erro:Não é possível gerar uma planilha com mais de 500 entradas");
   const data = games;
-  createExcelSheet(data,"./output");
-  const wkShPath = './output/excelBuild.xlsx';
+  createExcelSheet(data, "./output");
+  const wkShPath = "./output/excelBuild.xlsx";
   const stream = fs.createReadStream(wkShPath);
 
   // Defina os cabeçalhos corretos para indicar que a resposta é um fluxo de bytes binários
-  res.setHeader('Content-Type', 'application/octet-stream');
-  res.setHeader('Content-Disposition', 'attachment; filename=excelBuild.xlsx');
+  res.setHeader("Content-Type", "application/octet-stream");
+  res.setHeader("Content-Disposition", "attachment; filename=excelBuild.xlsx");
 
   // Transmita o conteúdo do arquivo para a resposta
   stream.pipe(res);

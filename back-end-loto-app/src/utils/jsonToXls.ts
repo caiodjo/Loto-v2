@@ -12,5 +12,3 @@ const createExcelSheet = (data: any[], dirname:string) => {
 };
 
 export default createExcelSheet;
-
-//const workSheetsFromBuffer = xlsx.parse(fs.readFileSync(`${__dirname}/myFile.xlsx`));
