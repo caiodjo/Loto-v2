@@ -6,4 +6,4 @@ export type filterParams = {
   moldura: number;
   miolo: number;
 };
-export type elemRemove = number[];
+

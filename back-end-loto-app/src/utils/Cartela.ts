@@ -43,7 +43,7 @@ export class Cartela {
 
   public filtrarEmSi(numero: number): void {
     this.cartelas = this.cartelas.filter((cartela) => {
-      return !cartela.includes(numero);
+      return cartela.includes(numero);
     });
   }
 
