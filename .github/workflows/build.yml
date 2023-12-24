@@ -17,6 +17,28 @@ jobs:
       #- name: Lint, run: npm run lint - future
       #- name: Test code run: npm run test - future
       - name: Build code
-        run: npm run build
+        run: cd back-end-loto-app/ && npm run build
       - name: Deploy code
         run: echo "Deploying..."
+  build-backend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        
+      - name: Set up Node.js for backend
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+        
+      - name: Enter backend directory
+        run: cd back-end-loto-app/
+        
+      - name: Display current directory (backend)
+        run: pwd
+        
+      - name: Install backend dependencies
+        run: npm ci
+        
+      - name: Run backend tests
+        run: npm test
