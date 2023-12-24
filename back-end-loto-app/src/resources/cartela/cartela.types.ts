@@ -1,4 +1,4 @@
-export type buildParams = {
+export type filterParams = {
   pares: number;
   impares: number;
   primos: number;
@@ -6,3 +6,4 @@ export type buildParams = {
   moldura: number;
   miolo: number;
 };
+export type elemRemove = number[];
