@@ -1,21 +1,25 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-const initialState: Jogadas = {
-  jogadas: [],
+interface defaultGame {
+  filtros: number[];
+}
+
+const initialState: defaultGame = {
+  filtros: [],
 };
 
 const cartelaSlice = createSlice({
-  name: "historico",
+  name: "filtros",
   initialState,
   reducers: {
-    adicionarHistoria: (state, action: PayloadAction<Possibilidades[]>) => {
-      state.jogadas = [...state.jogadas, action.payload];
+    filtrarNumeros: (state, action: PayloadAction<number>) => {
+      state.filtros = [...state.filtros, action.payload];
     },
     reset: (state) => {
-      state.jogadas = initialState.jogadas;
+      state.filtros = initialState.filtros;
     },
   },
 });
 
 export default cartelaSlice.reducer;
-export const { adicionarHistoria, reset } = historicoSlice.actions;
+export const { filtrarNumeros, reset } = cartelaSlice.actions;

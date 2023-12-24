@@ -9,3 +9,12 @@ services:
     volumes:
       - ./back-end-loto-app:/usr/src/app
     env_file: ./back-end-loto-app/.env
+  frontend:
+    container_name: loto_client
+    build: 
+      context: ./front-end-loto-app
+    ports:
+      - ${PORT_FRONT}:${PORT_FRONT}
+    volumes:
+      - ./front-end-loto-app:/usr/src/app
+    env_file: ./front-end-loto-app/.env
