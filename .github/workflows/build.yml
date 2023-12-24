@@ -7,7 +7,7 @@ jobs:
      - name: Get code
        uses: actions/checkout@v3
      - name: Enter backend
-       uses: cd back-end-loto-app/
+       run: cd back-end-loto-app/
      - name: Install dependencies
        run: npm ci
      #- name: Lint, run: npm run lint - future
