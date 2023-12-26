@@ -33,7 +33,7 @@ export default function Filtro(props: PropsFilter) {
   const possibilities = createFilters();
   return (
     <>
-        <p>filtro: {props.op}</p>
+      <p>filtro: {props.op}</p>
       {possibilities.map((pos, index) => {
         return (
           <Button

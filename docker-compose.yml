@@ -10,11 +10,15 @@ services:
       - ./back-end-loto-app:/usr/src/app
     env_file: ./back-end-loto-app/.env
   frontend:
+    image: node:18-alpine
     container_name: loto_client
-    build: 
-      context: ./front-end-loto-app
+    entrypoint: /bin/sh
     ports:
       - ${PORT_FRONT}:${PORT_FRONT}
+    working_dir: /usr/src/app
     volumes:
-      - ./front-end-loto-app:/usr/src/app
+     - type: bind
+       source: ./
+       target: /usr/src/app
+    tty: true
     env_file: ./front-end-loto-app/.env

@@ -2,6 +2,10 @@ FROM node:18-alpine
 
 WORKDIR /usr/src/app
 
+RUN npm build
+
+RUN npm preview
+
 EXPOSE 3366
 
-CMD ["npm", "start"]
+ENTRYPOINT ["npm", "run"]

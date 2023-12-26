@@ -55,4 +55,13 @@ function exportXlsx(req: Request, res: Response) {
   res.status(200).json("Sucesso");
 }
 
-export default { readWorkSheet, filter, exportXlsx };
+function checkLength(req: Request, res: Response) {
+  const { numbers }: { numbers: number[] } = req.body;
+  const snap = new Cartela();
+  numbers.forEach((num) => {
+    snap.filtrarEmSi(num);
+  });
+  res.status(200).json(snap.getCartelas().length);
+}
+
+export default { readWorkSheet, filter, exportXlsx, checkLength };

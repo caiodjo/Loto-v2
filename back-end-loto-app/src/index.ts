@@ -8,7 +8,7 @@ const PORT = process.env.PORT ?? 7777;
 export const all = new Cartela();
 
 app.use(express.json());
-app.use(router);
+app.use("/api", router);
 
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);

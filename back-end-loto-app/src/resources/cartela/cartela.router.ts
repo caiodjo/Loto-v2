@@ -10,5 +10,6 @@ const upload = multer({ storage });
 router.post("/filter", cartelaController.filter);
 router.post("/upload", upload.single("file"), cartelaController.readWorkSheet);
 router.post("/build", paramValidate("games"), cartelaController.exportXlsx);
+router.get("/check", paramValidate("numbers"), cartelaController.checkLength);
 
 export default router;
