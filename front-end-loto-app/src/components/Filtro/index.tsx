@@ -2,7 +2,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { Button } from "react-bootstrap";
 import "/node_modules/bootstrap/dist/css/bootstrap.min.css";
-import { filtrarNumeros } from "../../redux/slices/cartela.slice";
+import {
+  RemoveFromFilter,
+  addToFilter,
+} from "../../redux/slices/cartela.slice";
 import { padroes } from "../../types/patterns";
 
 interface PropsFilter {
@@ -10,7 +13,9 @@ interface PropsFilter {
 }
 export default function Filtro(props: PropsFilter) {
   const dispatch = useDispatch();
-  const listFilter: number[] = useSelector((state: RootState) => state.filtros);
+  const listFilter: number[] = useSelector(
+    (state: RootState) => state.cartela.filtros
+  );
 
   //inicializa o array com 25 valores de 01 a 25 em string
   function createFilters() {
@@ -41,7 +46,9 @@ export default function Filtro(props: PropsFilter) {
             key={index}
             active={listFilter.includes(parseInt(pos, 10)) ? true : false}
             onClick={() => {
-              dispatch(filtrarNumeros(parseInt(pos, 10)));
+              listFilter.includes(parseInt(pos))
+                ? dispatch(RemoveFromFilter(parseInt(pos, 10)))
+                : dispatch(addToFilter(parseInt(pos, 10)));
             }}
           >
             {pos}

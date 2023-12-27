@@ -12,8 +12,14 @@ const cartelaSlice = createSlice({
   name: "filtros",
   initialState,
   reducers: {
-    filtrarNumeros: (state, action: PayloadAction<number>) => {
+    addToFilter: (state, action: PayloadAction<number>) => {
       state.filtros = [...state.filtros, action.payload];
+    },
+    RemoveFromFilter: (state, action: PayloadAction<number>) => {
+      state.filtros.splice(
+        state.filtros.findIndex((el) => el === action.payload),
+        1
+      );
     },
     reset: (state) => {
       state.filtros = initialState.filtros;
@@ -22,4 +28,4 @@ const cartelaSlice = createSlice({
 });
 
 export default cartelaSlice.reducer;
-export const { filtrarNumeros, reset } = cartelaSlice.actions;
+export const { addToFilter, RemoveFromFilter, reset } = cartelaSlice.actions;

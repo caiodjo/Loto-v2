@@ -5,7 +5,9 @@ import { Cartela } from "../../utils/Cartela";
 import createExcelSheet from "../../utils/jsonToXls";
 
 function readWorkSheet(req: Request, res: Response) {
+  console.log(req.body);
   const file = req.file;
+  console.log("arquivo recebido: " + file);
   if (!file) return res.status(400).send("Nenhum arquivo enviado");
   const buffer: Buffer = file.buffer;
   const workSheetsFromBuffer = xlsx.parse(buffer);
