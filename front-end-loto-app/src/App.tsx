@@ -9,14 +9,32 @@ function App() {
       <div>
         <Upload />
       </div>
-      <Filtro op="par" />
-      <Filtro op="impar" />
-      <Filtro op="fibo" />
-      <Filtro op="primo" />
-      <Filtro op="miolo" />
+      <div className="row m-3">
+        <div className="col-sm-8">
+          <div className="row">
+            <div className="col-sm-5">
+              <Filtro op="par" />
+            </div>
+            <div className="col-sm-5">
+              <Filtro op="impar" />
+            </div>
+            <div className="col-sm-5">
+              <Filtro op="fibo" />
+            </div>
 
-      <h2>Filtrar: </h2>
-      <Generate />
+            <div className="col-sm-5">
+              <Filtro op="primo" />
+            </div>
+            <div className="col-sm-5">
+              <Filtro op="miolo" />
+            </div>
+          </div>
+        </div>
+        <div className="col-sm-4">
+          <h2>Filtrar: </h2>
+          <Generate />
+        </div>
+      </div>
     </>
   );
 }
