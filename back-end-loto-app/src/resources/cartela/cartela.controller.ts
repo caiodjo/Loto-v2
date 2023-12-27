@@ -39,6 +39,7 @@ function filter(req: Request, res: Response) {
 
 function exportXlsx(req: Request, res: Response) {
   const { games }: { games: number[][] } = req.body;
+  console.log(games);
   if (games.length > 500)
     return res
       .status(460)
@@ -49,11 +50,18 @@ function exportXlsx(req: Request, res: Response) {
   const stream = fs.createReadStream(wkShPath);
 
   // Defina os cabeçalhos corretos para indicar que a resposta é um fluxo de bytes binários
-  res.setHeader("Content-Type", "application/octet-stream");
+  res.setHeader(
+    "Content-Type",
+    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+  );
   res.setHeader("Content-Disposition", "attachment; filename=excelBuild.xlsx");
 
   // Transmita o conteúdo do arquivo para a resposta
   stream.pipe(res);
+  stream.on("error", (err) => {
+    console.error("Erro durante a transmissão do arquivo:", err);
+    res.status(500).send("Erro durante a transmissão do arquivo");
+  });
   res.status(200).json("Sucesso");
 }
 

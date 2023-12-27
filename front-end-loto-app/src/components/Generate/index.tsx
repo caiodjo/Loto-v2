@@ -1,7 +1,7 @@
 import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../redux/store";
-import { fetchQnt } from "../../redux/slices/api.slice.filter";
+import { fetchQnt, generateResult } from "../../redux/slices/api.slice.filter";
 import { useEffect } from "react";
 
 export default function Generate() {
@@ -30,6 +30,18 @@ export default function Generate() {
         }}
       >
         Verificar Quantidade
+      </Button>
+      <Button
+        onClick={() => {
+          dispatch(
+            generateResult([
+              [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+              [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 16],
+            ])
+          );
+        }}
+      >
+        Baixar planilha
       </Button>
     </>
   );

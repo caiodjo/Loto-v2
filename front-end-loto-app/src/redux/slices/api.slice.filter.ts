@@ -1,9 +1,7 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { AxiosResponse } from "axios";
 import { ApiService } from "../../services/ApiService";
-import dotenv from "dotenv";
-
-const baseURL = "http://localhost:7777";
+import { blob } from "stream/consumers";
 
 interface FilteredGames {
   games: number[][];
@@ -26,11 +24,40 @@ export const fetchQnt = createAsyncThunk(
   "api/cartela/check",
   async (numbers: number[]) => {
     const response: AxiosResponse<number> = await ApiService.post(
-      `api/cartela/check`,{
-        numbers
+      `api/cartela/check`,
+      {
+        numbers,
       }
     );
     return response.data;
+  }
+);
+
+export const generateResult = createAsyncThunk(
+  "api/cartela/build",
+  async (games: number[][]) => {
+    try {
+      const response: AxiosResponse = await ApiService.post(
+        `api/cartela/build`,
+        { games },
+        { responseType: "blob" }
+      );
+      // Criação de um URL temporário para o Blob e inicia o download
+      console.log(response);
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "teste.xlsx";
+      document.body.appendChild(link);
+      link.click();
+
+      // Limpeza após o download
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error("error", error);
+      throw error;
+    }
   }
 );
 
